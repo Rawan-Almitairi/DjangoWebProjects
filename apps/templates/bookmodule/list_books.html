@@ -3,7 +3,7 @@
 {% block title %} My First Index HTML Page {% endblock title %}
 {% block content %}
  <h1>List of Books</h1>
-    <a href="one_book.html">
+    <a href="{% url 'books.view_one_book' 1 %}">
         <h2>Internet & World Wide Web How to Program</h2>
     </a>
     <a href="one_book.html"><img src="{% static 'book1.jpg' %}" alt="Book1 img desc" width="200" height="200"></a>
