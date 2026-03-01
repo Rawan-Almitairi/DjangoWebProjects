@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html5 links</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <a class="mylink" id="link-tab" href="https://www.qu.edu.sa/en/" target="_blank">Go to QU website (open a new tab)</a>
+    <a class="mylink" id="link1" href="https://www.qu.edu.sa/en/">Go to QU website (open in the same page/tab)</a>
+    <a class="mylink" id="link2" href="https://www.qu.edu.sa/en/">Go to QU website (open in the same page/tab)</a>
+    <button>
+        <a href="{% url 'books.html5.text.formatting' %}">formatting page</a>
+    </button>
+</body>
+</html>

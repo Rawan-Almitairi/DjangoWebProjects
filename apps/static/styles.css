@@ -17,3 +17,76 @@
 .topnav a.active {
     color: #008CBA;
 }
+
+/* lab5 */
+.mylink {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    padding: 24px;
+}
+
+#link-tab {
+    background-color: aquamarine;
+    color: red;
+}
+
+#link1 {
+    background-color: grey;
+    color: yellow;
+}
+
+#link2 {
+    background-color: black;
+    color: #eeeeee;
+}
+
+#link-tab:visited {
+    color: purple;
+}
+
+#link1:hover {
+    background-color: rgb(0, 149, 255);
+}
+
+#link2:active {
+    color: red;
+}
+
+.formatting {
+    color: green;
+    background-color: rgb(230, 255, 230);
+}
+
+.list-title {
+    color: #eeeeee;
+    background-color: #008CBA;
+    padding: 16px;
+}
+
+.table1-container {
+    text-align: center;
+    align-items: center;
+}
+
+.table1 th,
+td {
+    border: 1px solid black;
+}
+
+.table1 {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.table2-container {
+    text-align: center;
+    align-items: center;
+}
+
+.table2 {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 0 auto;
+}

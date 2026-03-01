@@ -39,3 +39,16 @@ def viewbook(request, bookId):
 
 def aboutus(request):
     return render(request, "bookmodule/aboutus.html")
+
+#lab5
+def links (request):
+    return render(request, "bookmodule/html5/links.html")
+
+def formatting(request):
+    return render(request, "bookmodule/html5/text/formatting.html")
+
+def listing (request):
+    return render(request, "bookmodule/html5/listing.html")
+
+def tables (request):
+    return render(request, "bookmodule/html5/tables.html")

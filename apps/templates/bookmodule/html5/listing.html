@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formatting</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1 class="list-title">the best fratures of the internet</h1>
+    <ul>
+        <li>you can meet new people from contries around the world</li>
+        <li>you have access to new media as it becomes public:</li>
+        <ul>
+            <li>new games</li>
+            <li>new applications</li>
+            <ol>
+                <li>for business</li>
+                <li>for pleasure</li>
+            </ol>
+            <li>arround the clock news</li>
+            <li>search engines</li>
+            <li>shopping</li>
+            <li>programming</li>
+            <ol>
+                <li>XML</li>
+                <li>Java</li>
+                <li>HTML5</li>
+                <li>JavaScript</li>
+                <li>new languages</li>
+            </ol>
+        </ul>
+        <li>links</li>
+        <li>keeping in touch with old friends</li>
+        <li>it's the technology of the future!</li>
+    </ul>
+    <button>
+        <a href="{% url 'books.html5.tables' %}">tables page</a>
+    </button>
+</body>
+</html>
