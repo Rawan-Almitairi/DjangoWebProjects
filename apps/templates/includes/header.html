@@ -3,5 +3,6 @@
     <a class="{% if url_name == 'books.index' %}active{% endif %}" href="{% url 'books.index' %}">Home</a>
     <a class="{% if url_name == 'books.list_books' %}active{% endif %}" href="{% url 'books.list_books' %}">List Books</a>
     <a class="{% if url_name == 'books.aboutus' %}active{% endif %}" href="{% url 'books.aboutus' %}">About</a>
+    <a class="{% if url_name == 'books.search' %}active{% endif %}" href="{% url 'books.search' %}">Search</a>
 </div>
 {% endwith %}
