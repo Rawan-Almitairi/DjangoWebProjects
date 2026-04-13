@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.db.models import Q
 from .models import Book
+from django.db.models import Count, Sum, Avg, Max, Min
+from .models import Student, Address
 
 # Create your views here.
 # def index(request):
@@ -84,30 +87,17 @@ def __getBooksList():
 #lab7
 def add_books(request):
     Book.objects.create(
-        title="Continuous Delivery",
-        author="J. Humble",
-        price=120,
-        edition=3
-    )
-
-    Book.objects.create(
-        title="Reverse Engineering",
-        author="E. Eilam",
-        price=97,
-        edition=2
-    )
-
-    Book.objects.create(
-        title="Machine Learning",
-        author="Burkov",
-        price=100,
+        title="java concepts",
+        author="michael cohen",
+        price=54,
         edition=4
     )
+
     Book.objects.create(
-    title="Data Structures and Algorithms",
-    author="John Smith",
-    price=150,
-    edition=3
+        title="programming concepts",
+        author="prof. khan",
+        price=87,
+        edition=5
     )
 
     return HttpResponse("Books added successfully!")
@@ -133,4 +123,52 @@ def complex_query(request):
     else:
         return render(request, 'bookmodule/index3.html')
 
+# lab 8: 
+def task1(request):
+    books = Book.objects.filter(Q(price__lte=80))
+    return render(request, 'bookmodule/lab8/task1.html', {'books': books})
 
+def task2(request):
+    books = Book.objects.filter(
+        Q(edition__gt=3) & 
+        (Q(title__icontains='co') | Q(author__icontains='co'))
+    )
+    return render(request, 'bookmodule/lab8/task2.html', {'books': books})
+
+def task3(request):
+    books = Book.objects.filter(
+        Q(edition__lte=3) & 
+        ~(Q(title__icontains='co') | Q(author__icontains='co'))
+    )
+    return render(request, 'bookmodule/lab8/task3.html', {'books': books})
+
+def task4(request):
+    books = Book.objects.all().order_by('title')
+    return render(request, 'bookmodule/lab8/task4.html', {'books': books})
+
+def task5(request):
+    data = Book.objects.aggregate(
+        count=Count('id'),
+        total=Sum('price'),
+        avg=Avg('price'),
+        max=Max('price'),
+        min=Min('price')
+    )
+    return render(request, 'bookmodule/lab8/task5.html', {'data': data})
+
+def task7(request):
+    # create data:
+    # if Student.objects.count() == 0:
+    #     addr1 = Address.objects.create(city="Qassim")
+    #     addr2 = Address.objects.create(city="Riyadh")
+    #     addr3 = Address.objects.create(city="Jeddah")
+
+    #     Student.objects.create(name="Rawan", age=20, address=addr1)
+    #     Student.objects.create(name="Sara", age=21, address=addr1)
+    #     Student.objects.create(name="Lama", age=22, address=addr2)
+    #     Student.objects.create(name="Maha", age=23, address=addr2)
+    #     Student.objects.create(name="Nour", age=24, address=addr3)
+    #     Student.objects.create(name="Reem", age=25, address=addr3)
+
+    data = Student.objects.values('address__city').annotate(count=Count('id'))
+    return render(request, 'bookmodule/lab8/task7.html', {'data': data})

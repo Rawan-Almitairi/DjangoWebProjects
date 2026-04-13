@@ -1,0 +1,16 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} task5 Lab8 {% endblock title %}
+{% block content %}
+    <h1>Task 5: Books Statistics</h1>
+    <button class="lab8-btn">
+        <a href="{% url 'books.lab8.task7' %}">open task7</a>
+    </button>
+    <ul>
+        <li>Total Books: {{ data.count }}</li>
+        <li>Total Price: ${{ data.total }}</li>
+        <li>Average Price: ${{ data.avg }}</li>
+        <li>Maximum Price: ${{ data.max }}</li>
+        <li>Minimum Price: ${{ data.min }}</li>
+    </ul>
+{% endblock content %}

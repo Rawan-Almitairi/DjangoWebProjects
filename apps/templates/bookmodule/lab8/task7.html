@@ -1,0 +1,11 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} task7 Lab8 {% endblock title %}
+{% block content %}
+    <h1>Task 7: Students per City</h1>
+    <ul>
+        {% for item in data %}
+            <li>{{ item.address__city }}: {{ item.count }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

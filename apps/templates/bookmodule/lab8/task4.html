@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} task4 Lab8 {% endblock title %}
+{% block content %}
+    <h1>Task 4: Books ordered by title</h1>
+    <button class="lab8-btn">
+        <a href="{% url 'books.lab8.task5' %}">open task5</a>
+    </button>
+    {% if books %}
+    <ul>
+        {% for obj in books %}
+        ID: {{ obj.id }} <br>
+        Title: {{ obj.title }} <br>
+        Author: {{ obj.author }} <br>
+        Price: {{ obj.price }} <br>
+        Edition: {{ obj.edition }} <br>
+        <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found</p>
+    {% endif %}
+{% endblock content %}
