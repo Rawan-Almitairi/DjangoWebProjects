@@ -1,0 +1,19 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} list books {% endblock title %}
+{% block content %}
+<h1>Books List part 2</h1>
+
+<a href="/books/lab9_part2/addbook/">Add New Book</a>
+
+<hr>
+
+{% for book in books %}
+    <p>
+        {{ book.title }} - {{ book.price }}
+        <a href="/books/lab9_part2/editbook/{{ book.id }}">Edit</a>
+        <a href="/books/lab9_part2/deletebook/{{ book.id }}">Delete</a>
+    </p>
+{% endfor %}
+
+{% endblock content %}

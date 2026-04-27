@@ -127,3 +127,27 @@ td {
     text-decoration: none;
     color: #eeeeee;
 }
+.lab10-btn {
+    background-color: #008CBA;
+    color: #eeeeee;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.lab10-btn a{
+    text-decoration: none;
+    color: #eeeeee;
+}
+.lab10-p2-btn {
+    background-color: #008CBA;
+    color: #eeeeee;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.lab10-p2-btn a{
+    text-decoration: none;
+    color: #eeeeee;
+}

@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} edit book {% endblock title %}
+{% block content %}
+<h1>Edit Book</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    Title: <input type="text" name="title" value="{{ book.title }}"><br>
+    Price: <input type="number" name="price" value="{{ book.price }}"><br>
+    <button type="submit">Update</button>
+</form>
+
+{% endblock content %}

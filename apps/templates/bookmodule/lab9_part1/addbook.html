@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} add books {% endblock title %}
+{% block content %}
+<h1>Add Book</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    Title: <input type="text" name="title"><br>
+    Price: <input type="number" name="price"><br>
+    <button type="submit">Save</button>
+</form>
+
+{% endblock content %}
