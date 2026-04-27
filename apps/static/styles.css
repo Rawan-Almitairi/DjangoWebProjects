@@ -99,6 +99,10 @@ td {
     border-radius: 4px;
     cursor: pointer;
 }
+.lab5-btn a{
+    text-decoration: none;
+    color: #eeeeee;
+}
 .lab8-btn {
     background-color: #008CBA;
     color: #eeeeee;
@@ -106,4 +110,20 @@ td {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+.lab8-btn a{
+    text-decoration: none;
+    color: #eeeeee;
+}
+.lab9-btn {
+    background-color: #008CBA;
+    color: #eeeeee;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.lab9-btn a{
+    text-decoration: none;
+    color: #eeeeee;
 }

@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.db.models import Q
 from .models import Book
 from django.db.models import Count, Sum, Avg, Max, Min
-from .models import Student, Address
+from .models import Student, Address, Publisher, Author
+from django.utils import timezone
+from django.db.models import F, FloatField, ExpressionWrapper
 
 # Create your views here.
 # def index(request):
@@ -125,29 +127,29 @@ def complex_query(request):
 
 # lab 8: 
 def task1(request):
-    books = Book.objects.filter(Q(price__lte=80))
+    books = Book1.objects.filter(Q(price__lte=80))
     return render(request, 'bookmodule/lab8/task1.html', {'books': books})
 
 def task2(request):
-    books = Book.objects.filter(
+    books = Book1.objects.filter(
         Q(edition__gt=3) & 
         (Q(title__icontains='co') | Q(author__icontains='co'))
     )
     return render(request, 'bookmodule/lab8/task2.html', {'books': books})
 
 def task3(request):
-    books = Book.objects.filter(
+    books = Book1.objects.filter(
         Q(edition__lte=3) & 
         ~(Q(title__icontains='co') | Q(author__icontains='co'))
     )
     return render(request, 'bookmodule/lab8/task3.html', {'books': books})
 
 def task4(request):
-    books = Book.objects.all().order_by('title')
+    books = Book1.objects.all().order_by('title')
     return render(request, 'bookmodule/lab8/task4.html', {'books': books})
 
 def task5(request):
-    data = Book.objects.aggregate(
+    data = Book1.objects.aggregate(
         count=Count('id'),
         total=Sum('price'),
         avg=Avg('price'),
@@ -172,3 +174,88 @@ def task7(request):
 
     data = Student.objects.values('address__city').annotate(count=Count('id'))
     return render(request, 'bookmodule/lab8/task7.html', {'data': data})
+
+#lab9:
+#task1
+def task1(request):
+    # if Book.objects.count() == 0:
+    #     p1 = Publisher.objects.create(name="OReilly", location="USA")
+    #     p2 = Publisher.objects.create(name="Pearson", location="UK")
+
+    #     a1 = Author.objects.create(name="Author1")
+    #     a2 = Author.objects.create(name="Author2")
+
+    #     b1 = Book.objects.create(
+    #         title="Django Basics",
+    #         price=100,
+    #         quantity=5,
+    #         pubdate=timezone.now(),
+    #         rating=4,
+    #         publisher=p1
+    #     )
+    #     b1.authors.add(a1)
+
+    #     b2 = Book.objects.create(
+    #         title="Python Advanced",
+    #         price=150,
+    #         quantity=10,
+    #         pubdate=timezone.now(),
+    #         rating=5,
+    #         publisher=p2
+    #     )
+    #     b2.authors.add(a2)
+
+    # total_books = Book.objects.aggregate(total=Sum('quantity'))['total']
+
+    # books = Book.objects.annotate(
+    #     percentage=(F('quantity') * 100.0) / total_books
+    # )
+    total_books = Book.objects.aggregate(total=Sum('quantity'))['total']
+
+    books = Book.objects.annotate(
+        percentage=ExpressionWrapper(
+            (F('quantity') * 100.0) / total_books,
+            output_field=FloatField()
+        )
+    )
+
+
+    return render(request, 'bookmodule/lab9/task1.html', {'books': books})
+#task2
+def task2(request):
+    data = Publisher.objects.annotate(total_books=Sum('book__quantity'))
+
+    return render(request, 'bookmodule/lab9/task2.html', {'data': data})
+#task3
+def task3(request):
+    data = Publisher.objects.annotate(oldest_book=Min('book__pubdate'))
+
+    return render(request, 'bookmodule/lab9/task3.html', {'data': data})
+#task4
+def task4(request):
+    data = Publisher.objects.annotate(
+        avg_price=Avg('book__price'),
+        min_price=Min('book__price'),
+        max_price=Max('book__price')
+    )
+
+    return render(request, 'bookmodule/lab9/task4.html', {'data': data})
+# task5
+def task5(request):
+    data = Publisher.objects.annotate(
+        high_rated=Count('book', filter=Q(book__rating__gte=4))
+    )
+
+    return render(request, 'bookmodule/lab9/task5.html', {'data': data})
+#task6
+def task6(request):
+    data = Publisher.objects.annotate(
+        filtered_books=Count(
+            'book',
+            filter=Q(book__price__gt=50, book__quantity__lt=5, book__quantity__gte=1)
+        )
+    )
+
+    return render(request, 'bookmodule/lab9/task6.html', {'data': data})
+
+#lab10

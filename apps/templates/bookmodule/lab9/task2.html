@@ -1,0 +1,13 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} task2 Lab9 {% endblock title %}
+{% block content %}
+<h1>Publishers Stock</h1>
+<button class="lab9-btn">
+        <a href="{% url 'books.lab9.task3' %}">open task3</a>
+    </button>
+
+{% for p in data %}
+<p>{{ p.name }} - {{ p.total_books }}</p>
+{% endfor %}
+{% endblock content %}

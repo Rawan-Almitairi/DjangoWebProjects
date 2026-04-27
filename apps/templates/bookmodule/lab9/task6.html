@@ -1,0 +1,13 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} task6 Lab9 {% endblock title %}
+{% block content %}
+<h1>Filtered Books</h1>
+
+{% for p in data %}
+    <p>{{ p.name }} - {{ p.filtered_books }}</p>
+{% empty %}
+    <p>No data</p>
+{% endfor %}
+
+{% endblock content %}

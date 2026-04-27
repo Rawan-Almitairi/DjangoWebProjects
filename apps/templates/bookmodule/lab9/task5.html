@@ -1,0 +1,16 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} task5 Lab9 {% endblock title %}
+{% block content %}
+<h1>High Rated Books</h1>
+<button class="lab9-btn">
+        <a href="{% url 'books.lab9.task6' %}">open task6</a>
+    </button>
+
+{% for p in data %}
+    <p>{{ p.name }} - {{ p.high_rated }}</p>
+{% empty %}
+    <p>No data</p>
+{% endfor %}
+
+{% endblock content %}

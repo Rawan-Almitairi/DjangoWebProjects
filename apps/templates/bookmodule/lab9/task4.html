@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} task4 Lab9 {% endblock title %}
+{% block content %}
+
+<h1>Prices per Publisher</h1>
+<button class="lab9-btn">
+        <a href="{% url 'books.lab9.task5' %}">open task5</a>
+    </button>
+
+{% for p in data %}
+    <p>
+        {{ p.name }} <br>
+        Avg: {{ p.avg_price }} <br>
+        Min: {{ p.min_price }} <br>
+        Max: {{ p.max_price }}
+    </p>
+    <hr>
+{% empty %}
+    <p>No data</p>
+{% endfor %}
+
+{% endblock content %}
